@@ -25,9 +25,6 @@ class Purchase extends \Magento\Framework\View\Element\Template
 
         $data = [
             /**
-             * DT managed GTM Tag will trigger affiliate window if an order is NOT paid with v12 finance.
-             * Offering payment method information to enable this to happen
-             *
              * dimension2 = payment_method
              */
             'dimension2' => $order->getPayment()->getMethod(),
@@ -48,10 +45,10 @@ class Purchase extends \Magento\Framework\View\Element\Template
             'ecommerce' => [
                         'currency' => "GBP",
                         'transaction_id' => 'WEB'.$order->getIncrementId(), // order_reference_number
-                        'affiliation' => $this->_scopeConfig->getValue(\Magento\Store\Model\Information::XML_PATH_STORE_INFO_NAME), // brand_website_name
-                        'value' => $order->getBaseGrandTotal() - ($order->getBaseTaxAmount() + $order->getBaseShippingAmount()), // order_value_minus_tax_and_shipping
-                        'tax' => round($order->getBaseTaxAmount(),2), // total_product_tax_no_shipping_tax
-                        'shipping' => round($order->getBaseShippingAmount(),2), // shipping_cost_minus_tax
+                        'affiliation' => $this->_scopeConfig->getValue(\Magento\Store\Model\Information::XML_PATH_STORE_INFO_NAME),
+                        'value' => $order->getBaseGrandTotal() - ($order->getBaseTaxAmount() + $order->getBaseShippingAmount()), 
+                        'tax' => round($order->getBaseTaxAmount(),2), 
+                        'shipping' => round($order->getBaseShippingAmount(),2), 
                         'coupon' => strval($order->getCouponCode() ?? ''),
                     ],
         ];
@@ -60,35 +57,28 @@ class Purchase extends \Magento\Framework\View\Element\Template
         $product_index = 0;
         foreach ($order->getAllItems() as $item) {
             /** @var \Magento\Sales\Model\Order\Item $item */
-
-            // Only process simple products
+            // Only process simples
             if ($item->getProductType() === \Magento\Catalog\Model\Product\Type::TYPE_BUNDLE) {
                 continue;
             }
-
-            // Configurable variant persists part of the data in parent item
             $presentingItem = $item->getParentItem() ?? $item;
 
             $products[] = [
                 'item_id' => $presentingItem->getSku(),
                 'item_name' => $presentingItem->getName(),
-                'affiliation' => "Google Merchandise Store",
+                'affiliation' => "Magento Store",
                 'coupon' => "",
                 'discount' => 0,
                 'index' => $product_index,
                 'item_brand' => $item->getData('brand'),
-                'item_category' => "Apparel",
-                'item_category2' => "Adult",
+                'item_category' => '',
                 'item_variant' => '',
                 'price' => round($presentingItem->getBasePrice(),2),
                 'quantity' => (integer)$item->getQtyOrdered()
             ];
-
             $product_index ++;
         }
-
         $data['ecommerce']['items'] = $products;
-
         return $data;
     }
 }
