@@ -16,7 +16,7 @@
         }
     },
         "repositories": {
-        "fastly-magento2": {
+        "zero1-ga4gtm": {
             "type": "git",
             "url": "https://github.com/zero1limited/module-ga4gtm.git"
         }
