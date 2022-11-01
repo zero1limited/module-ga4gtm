@@ -1,0 +1,25 @@
+{
+    "name": "zero1limited/module-ga4gtm",
+    "description": "Google Analytics 4 implementation using Google Tag Manager",
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Zero1\\Ga4Gtm\\": ""
+        }
+    },
+        "repositories": {
+        "fastly-magento2": {
+            "type": "git",
+            "url": "https://github.com/zero1limited/module-ga4gtm.git"
+        }
+    }
+}
+

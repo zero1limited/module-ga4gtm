@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Zero1\Ga4Gtm\Block\Purchase" name="gtm.data_layer.ecommerce.purchase" template="Zero1_Ga4Gtm::purchase.phtml" ifconfig="ga4gtm/general/active" after="z1.ga4gtm.js"/>
+        </referenceContainer>
+    </body>
+</page>

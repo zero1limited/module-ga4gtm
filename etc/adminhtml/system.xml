@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zero1" translate="label" sortOrder="100">
+            <label>ZERO-1</label>
+        </tab>
+        <section id="ga4gtm" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>GA4</label>
+            <tab>zero1</tab>
+            <resource>Zero1_Ga4Gtm::config_ga4gtm</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable this module</comment>
+                </field>
+                <field id="ga_id" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement ID</label>
+                    <comment>GA Measurement ID from your GA4 Web Stream</comment>
+                </field>
+                <field id="gtm_id" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GTM Container ID</label>
+                    <comment>ID associated for GTM usually in the format of GTM-XXXXXX</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

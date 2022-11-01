@@ -1,0 +1,7 @@
+<?php /** @var \Zero1\Ga4Gtm\Block\Purchase $block */ ?>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+    dataLayer.push(<?php echo json_encode($block->getEcommerceObject()); ?>);
+</script>
